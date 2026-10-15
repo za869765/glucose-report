@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navy"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="14dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="臺南市佳里區衛生所"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="指尖血糖報告"
+                android:textColor="@color/navy_light"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="center"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="⚙ 試片"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView style="@style/FieldLabel" android:text="姓名" />
+
+            <EditText
+                android:id="@+id/etName"
+                style="@style/Field"
+                android:hint="請輸入姓名"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName" />
+
+            <TextView style="@style/FieldLabel" android:text="指尖血糖 (mg/dL)" />
+
+            <EditText
+                android:id="@+id/etGlucose"
+                style="@style/Field"
+                android:hint="例：98"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="3" />
+
+            <TextView style="@style/FieldLabel" android:text="檢驗時間（點選可調整）" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                style="@style/Field"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tvStrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/card_bg"
+                android:lineSpacingExtra="2dp"
+                android:padding="12dp"
+                android:textColor="@color/navy"
+                android:textSize="14sp" />
+
+            <TextView style="@style/FieldLabel" android:text="報告預覽" />
+
+            <ImageView
+                android:id="@+id/ivPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="報告預覽" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/send_bg"
+        android:gravity="center"
+        android:text="存檔並傳送 LINE"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>
