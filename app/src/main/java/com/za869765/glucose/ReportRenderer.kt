@@ -31,14 +31,29 @@ object ReportRenderer {
     private val FOOT_LINE = Color.parseColor("#D5DDE8")
     private val LOW = Color.parseColor("#1565C0")
     private val HIGH = Color.parseColor("#C62828")
+    private val LOW_BG = Color.parseColor("#E3F0FB")
+    private val HIGH_BG = Color.parseColor("#FCE8E8")
+
+    /** 全形數字也轉成數值。 */
+    private fun parse(glucose: String): Int? =
+        glucose.filter { it.isDigit() }.map { Character.getNumericValue(it) }.joinToString("").toIntOrNull()
 
     /** 低於 70 藍、高於 100 紅、正常黑。 */
     fun valueColor(glucose: String): Int {
-        val v = glucose.toIntOrNull() ?: return INK
+        val v = parse(glucose) ?: return INK
         return when {
             v < 70 -> LOW
             v > 100 -> HIGH
             else -> INK
+        }
+    }
+
+    private fun valueBg(glucose: String): Int? {
+        val v = parse(glucose) ?: return null
+        return when {
+            v < 70 -> LOW_BG
+            v > 100 -> HIGH_BG
+            else -> null
         }
     }
 
@@ -114,6 +129,7 @@ object ReportRenderer {
             c.drawText(s, (cols[i] + cols[i + 1]) / 2, y + 60f, headP)
         }
         val rowTop = y + tableHeadH
+        valueBg(d.glucose)?.let { c.drawRect(cols[1], rowTop, cols[2], rowTop + tableRowH, fill(it)) }
         val cellP = text(42f, INK, align = Paint.Align.CENTER)
         val valueP = text(58f, valueColor(d.glucose), bold = true, align = Paint.Align.CENTER)
         c.drawText("指尖血糖", (cols[0] + cols[1]) / 2, rowTop + 86f, cellP)

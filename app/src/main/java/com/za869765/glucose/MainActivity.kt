@@ -91,6 +91,7 @@ class MainActivity : Activity() {
 
     private fun refresh() {
         tvTime.text = rocTime(time)
+        etGlucose.setTextColor(ReportRenderer.valueColor(etGlucose.text.toString()))
         tvStrip.text = "試片：${strip.brand}\n批號 ${strip.lot}／效期 ${strip.expiry}"
         ivPreview.setImageBitmap(ReportRenderer.render(data()))
     }
